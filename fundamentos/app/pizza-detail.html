@@ -7,7 +7,7 @@
     <title>Pizzeria</title>
 </head>
 <header>
-    <a href="http://127.0.0.1:5500/fundamentos/app/index.html"><img id="logo" src="style/logo.jpg"></a>
+    <a href="http://127.0.0.1:5500/fundamentos/app/index.html"><img id="logo" src="style/logo.jpg" alt="Logo de la pizzeria"></a>
     <div class="title">
         <h1 id="title">Fire Pizzeria</h1>
         <a id="añadir" href="http://127.0.0.1:5500/fundamentos/app/pizza-form.html">Añadir pizzas</a>
@@ -17,7 +17,7 @@
 <body>
     <div class="p">
         <h1>Pizza X</h1>
-        <img id="piz" src="style/pizza.jpg">
+        <img id="piz" src="style/pizza.jpg" alt="Imagen de pizza">
     </div>
     <p id="description">La Pizza X contiene el sabor de ingrediente X combinado con el potente ingrediente X y aderezado con los ingredientes X y X</p>
     
@@ -30,14 +30,14 @@
     </div>
 
     <div class="comments">
-        <div>Escribe tu comentario:</div>
-        <textarea id="write"></textarea>
+        <label for="write">Escribe tu comentario:</label>
+        <textarea id="write" name="write"></textarea>
         <br>
         <input type="button" value="Enviar"></input>
     </div>
     <div class="comments">
-        <div>Comentarios:</div>
-        <textarea id="comment"></textarea>
+        <label for="comment">Comentarios:</label>
+        <textarea id="comment" name="comment"></textarea>
     </div>
 </body>
 </html>

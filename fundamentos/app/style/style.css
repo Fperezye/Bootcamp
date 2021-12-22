@@ -23,7 +23,7 @@ body {
   float: left;
 }
 
-#pizza {
+.pizza {
   border-radius: 50%;
   background-size: 100% auto;
   width: 250px;
