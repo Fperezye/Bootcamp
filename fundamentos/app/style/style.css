@@ -7,19 +7,40 @@ body {
   margin: 1px;
   line-height: 75px;
   font-size: 30px;
+  float: left;
+}
+
+#pizza {
+  margin-top: 200px;
+  margin-left: 1px;
+  margin-right: 1px;
+  margin-bottom: 1px;
 }
 
 .header{
-  margin:10px;
+  margin: 10px;
+  
+}
+
+#piz {
+  width: 400px;
+}
+
+.p{
+  margin: 10px;
+}
+
+.title {
+  margin-left: 350px;
 }
 
 .flex-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-img {
+#pizza {
   width: 250px;
   margin: 80px;
 }
@@ -55,7 +76,8 @@ a {
 .comments {
   text-align: left;
   font-size: 20px;
-  margin: 40px;
+  margin-top: 40px;
+  margin-left: 10px;
 }
 
 #write {
@@ -66,4 +88,19 @@ a {
 #comment {
   width: 500px;
   height: 250px;
+}
+
+.form {
+  text-align: center;
+  margin-top: 200px;
+}
+
+label {
+  display: inline-block;
+  width: 90px;
+}
+
+input {
+  display: inline-block;
+  width: 140px;
 }
