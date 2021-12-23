@@ -13,6 +13,12 @@ header {
   height: 172px;
 }
 
+.topCorner{
+  position:absolute;
+  top:0;
+  right:0;
+ }
+
 body {
   background-color: var(--bodyColor);
   margin: 0;
@@ -121,4 +127,9 @@ input {
 
 #nombre {
   width: 220px;
+}
+
+#login {
+  position: absolute;
+  right: 0;
 }
