@@ -19,6 +19,22 @@ header {
   right:0;
  }
 
+@media screen and (max-width:770px){
+  .topCorner{
+    position: relative;
+  }
+}
+
+@media screen and (max-width:545px){
+  .topCorner{
+    position: relative;
+  }
+
+  header {
+    height: 300px;
+  }
+}
+
 body {
   background-color: var(--bodyColor);
   margin: 0;
@@ -129,7 +145,3 @@ input {
   width: 220px;
 }
 
-#login {
-  position: absolute;
-  right: 0;
-}
