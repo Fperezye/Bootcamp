@@ -8,15 +8,19 @@ function adivina(){
     numIntentos = 0;
     numero = aleatorio(0, 100);
     while(numIntentos < 10){
-        numIntentos ++;
         intento = prompt("Introduzca un número entre el 0 y el 100: ");
-        if(intento == numero) {
-            alert("Enhorabuena, has acertado!")
-            return numero;
-        } else if(intento < numero) {
-            alert("El número a adivinar es mayor que el número proporcionado, inténtelo de nuevo")
+        if(isNaN(parseInt(intento)) || intento > 100 || intento < 0) {
+            alert("El valor introducido no es valido")
         } else {
-            alert("El número a adivinar es menor que el número proporcionado, inténtelo de nuevo")
+            numIntentos ++;
+            if(intento == numero) {
+                alert("Enhorabuena, has acertado!")
+                return numero;
+            } else if(intento < numero) {
+                alert("El número a adivinar es mayor que el número proporcionado, inténtelo de nuevo")
+            } else {
+                alert("El número a adivinar es menor que el número proporcionado, inténtelo de nuevo")
+            }
         }
     }
     if(numIntentos == 10) {
@@ -44,7 +48,7 @@ function primo(numero) {
 }
 
 function primos(numPrimos) {
-    c = numPrimos * 10;
+    let c = numPrimos * 10;
     var numerosPrimos = [];
     var array = [];
     for (j=2 ; j < c; j++) {
@@ -85,5 +89,43 @@ function palindromo(cadena){
         alert("Es un palíndromo")
     } else {
         alert("No es un palíndromo")
+    }
+}
+
+//7
+function AdivinaElNumeroConstructor(){
+    this.numero = aleatorio(0, 100);
+    this.acierto = false;
+    this.numIntentos = 0;
+}
+
+//8
+class AdivinaElNumero{
+    constructor() {
+            this.numero = aleatorio(0, 100);
+            this.acierto = false;
+            this.numIntentos = 0;
+    }
+    intentar (intento) {
+        if(isNaN(parseInt(intento)) || intento > 100 || intento < 0) {
+            alert("El valor introducido no es valido")
+        } else {
+            if(this.numIntentos == 10) {
+                alert("Has llegado al límite de intentos");
+            } else if(this.acierto == true) {
+                alert("Ya has acertado este numero")
+            } else {
+                this.numIntentos ++;
+                if(intento == this.numero) {
+                    this.acierto = true;
+                    alert("Enhorabuena, has acertado!")
+                    return this.numero;
+                } else if(intento < this.numero) {
+                    alert("El número a adivinar es mayor que el número proporcionado, inténtelo de nuevo")
+                } else {
+                    alert("El número a adivinar es menor que el número proporcionado, inténtelo de nuevo")
+                }
+            }
+        }
     }
 }
