@@ -97,16 +97,7 @@ function AdivinaElNumeroConstructor(){
     this.numero = aleatorio(0, 100);
     this.acierto = false;
     this.numIntentos = 0;
-}
-
-//8
-class AdivinaElNumero{
-    constructor() {
-            this.numero = aleatorio(0, 100);
-            this.acierto = false;
-            this.numIntentos = 0;
-    }
-    intentar (intento) {
+    this.intentar = function(intento) {
         if(isNaN(parseInt(intento)) || intento > 100 || intento < 0) {
             alert("El valor introducido no es valido")
         } else {
@@ -128,4 +119,50 @@ class AdivinaElNumero{
             }
         }
     }
+}
+
+//8
+class AdivinaElNumero{
+    constructor() {
+            this.numero = aleatorio(0, 100);
+            this.acierto = false;
+            this.numIntentos = 0;
+    }
+    intentar (intento) {
+        if(isNaN(parseInt(intento)) || intento > 100 || intento < 0) {
+            document.querySelector('output').innerText = "El valor introducido no es valido";
+        } else {
+            if(this.numIntentos == 10) {
+                document.querySelector('output').innerText = "Has llegado al límite de intentos";
+            } else if(this.acierto == true) {
+                document.querySelector('output').innerText = "Ya has acertado este numero";
+            } else {
+                this.numIntentos ++;
+                if(intento == this.numero) {
+                    this.acierto = true;
+                    document.querySelector('output').innerText = "Enhorabuena, has acertado!";
+                    return this.numero;
+                } else if(intento < this.numero) {
+                    document.querySelector('output').innerText = `El número a adivinar es mayor que el número proporcionado, inténtelo de nuevo. ${this.numIntentos} de 10 intentos`;
+                } else {
+                    document.querySelector('output').innerText = `El número a adivinar es menor que el número proporcionado, inténtelo de nuevo. ${this.numIntentos} de 10 intentos`;
+                }
+            }
+        }
+    }
+}
+
+//Validaciones
+function validMayus(text){
+    if(text == text.toUpperCase()) {
+        return true;
+    }
+    return false;
+}
+
+function validPositive(number){
+    if(number == Math.abs(number)) {
+        return true;
+    }
+    return false;
 }
