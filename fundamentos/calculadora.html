@@ -8,26 +8,107 @@
 </head>
 <body>
     <h1>Calculadora</h1>
-    <button value="0">0</button>
-    <button value="1">1</button>
-    <button value="2">2</button>
-    <button value="3">3</button>
-    <button value="4">4</button>
-    <br>
-    <button value="5">5</button>
-    <button value="6">6</button>
-    <button value="7">7</button>
-    <button value="8">8</button>    
-    <button value="9">9</button>
-    <br>
-    <button value="+">+</button>
-    <button value="-">-</button>    
-    <button value="*">*</button>
-    <button value="=">=</button>
-    <br>
+    <input class="operation" type="button" class="largo" value="C" />
+    </p>
+    <p>
+    <input class="numb" type="button" value="7">
+    <input class="numb" type="button" value="8">
+    <input class="numb" type="button" value="9">
+    <input class="operation" type="button" value="/">
+    </p>
+    <p>
+    <input class="numb" type="button" value="4">
+    <input class="numb" type="button" value="5">
+    <input class="numb" type="button" value="6">
+    <input class="operation" type="button" value="*">
+    </p>
+    <p>
+    <input class="numb" type="button" value="1">
+    <input class="numb" type="button" value="2">
+    <input class="numb" type="button" value="3">
+    <input class="operation" type="button" value="-">
+    </p>
+    <p>
+    <input class="numb" type="button" value="0">
+    <input class="operation" type="button" value="+-">
+    <input class="operation" type="button" value=",">
+    <input class="operation" type="button" value="+">
+    <input class="operation" type="button" value="=">
+    </p>
     <textarea></textarea>
     <script>
-        document.querySelectorAll('button').forEach(button => button.addEventListener('click', ev => document.querySelector('textarea').innerHTML += button.value)); //TO DO
+        resultado = 0;
+        operation=0;
+        xi=true;
+        coma = false;
+        op=false;
+        function igualar() {
+            if(operation !== 0){
+                resultado = document.querySelector('textarea').innerHTML = eval(oculto + operation + resultado);
+                oculto = 0;
+                coma = false;
+                operation = 0;
+                xi = true;
+            }
+        }
+        document.querySelectorAll('.numb').forEach(button => button.addEventListener('click', ev => {
+            if (resultado==0 || xi) {
+                resultado = button.value;
+                document.querySelector('textarea').innerHTML = button.value;
+            }
+         else {
+                resultado += button.value;
+                document.querySelector('textarea').innerHTML += button.value;
+            }
+            xi=false;
+            
+        }));
+        document.querySelectorAll('.operation').forEach(button => button.addEventListener('click', ev => {
+            if(button.value == "+"){
+                igualar();
+                oculto = resultado;
+                operation = "+";
+                xi=true;
+                coma = false;
+            } else if(button.value == "-"){
+                igualar();
+                oculto = resultado;
+                operation = "-";
+                xi=true;
+                coma = false;
+            } else if(button.value == "*"){
+                igualar();
+                oculto = resultado;
+                operation = "*";
+                xi=true;
+                coma = false;
+            }else if(button.value == "/"){
+                igualar();
+                oculto = resultado;
+                operation = "/";
+                xi=true;
+                coma = false;
+            } else if(button.value == "="){
+                igualar();
+            } else if(button.value == "C"){
+                document.querySelector('textarea').innerHTML = "";
+                resultado = 0;
+                operation = 0;
+                oculto = 0;
+                xi= true;
+                coma = false;
+            } else if(button.value == ","){
+                if(!coma){
+                    document.querySelector('textarea').innerHTML += ".";
+                    resultado += ".";
+                    coma = true;
+                }
+            } else if(button.value == "+-"){
+                
+                resultado = String(-parseFloat(document.querySelector('textarea').innerHTML));
+                document.querySelector('textarea').innerHTML = String(-parseFloat(document.querySelector('textarea').innerHTML));
+            }
+        }));
     </script>
 </body>
 </html>
