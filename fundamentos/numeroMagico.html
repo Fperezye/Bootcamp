@@ -13,17 +13,10 @@
     <br>
     <input type="number">
     <button id="intento">Intento</button>
-    <script src="ejercicios.js"></script>
+    <script src="./js/ejercicios.js"></script>
+    <script src="./js/numeroMagico.js"></script>
     <script>
         adivinar = new AdivinaElNumero(); //Por si le dan a intento antes de darle a inicio
-        document.querySelector('#inicio').addEventListener('click', ev => {
-            adivinar = new AdivinaElNumero();
-            document.querySelector('output').innerText = "Has empezado de nuevo, introduce un número del 1 al 100"
-        });
-        document.querySelector('#intento').addEventListener('click', ev => {
-            intento = document.querySelector('input').value;
-            adivinar.intentar(intento);
-        });
     </script>
 </body>
 </html>

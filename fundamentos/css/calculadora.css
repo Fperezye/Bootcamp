@@ -3,12 +3,16 @@ textarea {
     height: 75px;
 }
 
-.largo input { 
-    width: 76px; 
+.largo [value="C"]{ 
+    width: 70px; 
+}
+
+.largo [value="Retr"]{ 
+    width: 70px; 
 }
 
 input { 
-    width: 35px;
+    width: 45px;
     margin: 1.2px;
 }
 
