@@ -1,9 +1,9 @@
 function calculadora(area, operations, numbs){
-    resultado = 0;
-    operation = 0;
-    primeroEnPantalla = true;
-    coma = false;
-    limpiar = false;
+    let resultado = 0;
+    let operation = 0;
+    let primeroEnPantalla = true;
+    let coma = false;
+    let limpiar = false;
     function igualar() {
         limpiar = false;
         if ("+-*/=".indexOf(operation) == -1) return;
@@ -89,7 +89,7 @@ function calculadora(area, operations, numbs){
                 resultado = areaText.innerHTML = String(-parseFloat(areaText.innerHTML));
             } else if (button.value == "Retr") {
                 if(limpiar){
-                    br = resultado.substr(resultado.length - 1, resultado.length);
+                    let br = resultado.substr(resultado.length - 1, resultado.length);
                     resultado = resultado.substr(0, resultado.length - 1);
                     if (resultado == "" || resultado == "-") {
                         resultado = "0";

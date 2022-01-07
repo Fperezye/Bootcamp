@@ -43,19 +43,16 @@
     </div>
     <script src="./js/calculadora.js"></script>
     <script>
-        areaText = document.querySelector("textarea");
-        buttonsOperations = document.querySelectorAll(".operation");
-        buttonsNumbs = document.querySelectorAll(".numb");
+        let areaText = document.querySelector("textarea");
+        let buttonsOperations = document.querySelectorAll(".operation");
+        let buttonsNumbs = document.querySelectorAll(".numb");
         let calc = new calculadora(areaText, buttonsOperations, buttonsNumbs);
         document.body.addEventListener('keydown', ev => {
-			if(location.href.endsWith('debug'))
-			 	console.log('Tecla: ' + ev.key + ' -> ' + ev.keyCode)
 			if(ev.key === "Delete" || ev.key === "Backspace")
-				document.querySelector('#borrar').click()
+				document.querySelector('#borrar').click();
 			const button = document.querySelector(`[value="${ev.key.toUpperCase()}"]`);
-			if(button) button.click()
-		})
-		document.body.focus();
+			if(button) button.click();
+		})		
     </script>
 </body>
 </html>
