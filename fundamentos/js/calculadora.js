@@ -1,81 +1,105 @@
-areaText = document.querySelector('textarea');
-        operations = document.querySelectorAll('.operation');
-        numbs = document.querySelectorAll('.numb');
-        resultado = 0;
-        operation=0;
-        xi=true;
-        coma = false;
-        op=false;
-        function igualar() {
-            if(operation !== 0){
-                resultado = areaText.innerHTML = eval(oculto + operation + resultado);
-                oculto = 0;
-                coma = false;
-                operation = 0;
-                xi = true;
-            }
+function calculadora(area, operations, numbs){
+    resultado = 0;
+    operation = 0;
+    primeroEnPantalla = true;
+    coma = false;
+    limpiar = false;
+    function igualar() {
+        limpiar = false;
+        if ("+-*/=".indexOf(operation) == -1) return;
+        let operando = parseFloat(resultado);
+        oculto = parseFloat(oculto);
+        switch (operation) {
+            case "+":
+                oculto += operando;
+                break;
+            case "-":
+                oculto -= operando;
+                break;
+            case "*":
+                oculto *= operando;
+                break;
+            case "/":
+                oculto /= operando;
+                break;
         }
-        numbs.forEach(button => button.addEventListener('click', ev => {
-            if (resultado==0 || xi) {
+        resultado = area.innerHTML = oculto;
+        oculto = 0;
+        coma = false;
+        operation = 0;
+        primeroEnPantalla = true;
+    }
+    numbs.forEach((button) =>
+        button.addEventListener("click", (ev) => {
+            if (resultado == "0" || primeroEnPantalla) {
                 resultado = button.value;
                 areaText.innerHTML = button.value;
-            }
-         else {
+                limpiar = true;
+            } else {
                 resultado += button.value;
                 areaText.innerHTML += button.value;
+                limpiar = true;
             }
-            xi=false;
-            
-        }));
-        operations.forEach(button => button.addEventListener('click', ev => {
-            if(button.value == "+"){
+            primeroEnPantalla = false;
+        })
+    );
+    operations.forEach((button) =>
+        button.addEventListener("click", (ev) => {
+            if (button.value == "+") {
                 igualar();
                 oculto = resultado;
                 operation = "+";
-                xi=true;
+                primeroEnPantalla = true;
                 coma = false;
-            } else if(button.value == "-"){
+            } else if (button.value == "-") {
                 igualar();
                 oculto = resultado;
                 operation = "-";
-                xi=true;
+                primeroEnPantalla = true;
                 coma = false;
-            } else if(button.value == "*"){
+            } else if (button.value == "*") {
                 igualar();
                 oculto = resultado;
                 operation = "*";
-                xi=true;
+                primeroEnPantalla = true;
                 coma = false;
-            }else if(button.value == "/"){
+            } else if (button.value == "/") {
                 igualar();
                 oculto = resultado;
                 operation = "/";
-                xi=true;
+                primeroEnPantalla = true;
                 coma = false;
-            } else if(button.value == "="){
+            } else if (button.value == "=") {
                 igualar();
-            } else if(button.value == "C"){
+            } else if (button.value == "C") {
                 areaText.innerHTML = "";
                 resultado = 0;
                 operation = 0;
                 oculto = 0;
-                xi= true;
+                primeroEnPantalla = true;
                 coma = false;
-            } else if(button.value == ","){
-                if(!coma){
+            } else if (button.value == ",") {
+                if (!coma) {
                     areaText.innerHTML += ".";
                     resultado += ".";
                     coma = true;
+                    primeroEnPantalla = false;
                 }
-            } else if(button.value == "+-"){
-                resultado = String(-parseFloat(areaText.innerHTML));
-                areaText.innerHTML = String(-parseFloat(areaText.innerHTML));
-            } else if(button.value == "Retr"){
-                br=resultado.substr(resultado.length-1,resultado.length);
-                resultado=resultado.substr(0,resultado.length-1);
-                if (resultado=="") {resultado="0";}
-                if (br==".") {coma=false;}
-                areaText.innerHTML=resultado;
+            } else if (button.value == "+-") {
+                resultado = areaText.innerHTML = String(-parseFloat(areaText.innerHTML));
+            } else if (button.value == "Retr") {
+                if(limpiar){
+                    br = resultado.substr(resultado.length - 1, resultado.length);
+                    resultado = resultado.substr(0, resultado.length - 1);
+                    if (resultado == "" || resultado == "-") {
+                        resultado = "0";
+                    }
+                    if (br == ".") {
+                        coma = false;
+                    }
+                    areaText.innerHTML = resultado;
+                }
             }
-
-        }));
+        })
+    );    
+}
