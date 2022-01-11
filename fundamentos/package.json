@@ -14,6 +14,7 @@
     "@fortawesome/fontawesome-free": "^5.15.4"
   },
   "devDependencies": {
-    "eslint": "^8.5.0"
+    "eslint": "^8.5.0",
+    "jasmine-browser-runner": "^1.0.0"
   }
 }

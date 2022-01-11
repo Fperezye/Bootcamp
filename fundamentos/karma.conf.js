@@ -1,5 +1,5 @@
 // Karma configuration
-// Generated on Wed Dec 22 2021 17:42:33 GMT+0100 (hora estándar de Europa central)
+// Generated on Mon Jan 10 2022 20:56:38 GMT+0100 (hora estándar de Europa central)
 
 module.exports = function(config) {
   config.set({
@@ -15,6 +15,8 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+      'js/**/*.js',
+      'spec/**/*.js'
     ],
 
 
@@ -22,17 +24,27 @@ module.exports = function(config) {
     exclude: [
     ],
 
+    plugins: [
+      'karma-chrome-launcher',
+      'karma-jasmine',
+      'karma-coverage'
+    ],
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://www.npmjs.com/search?q=keywords:karma-preprocessor
     preprocessors: {
+      'js/**/*.js': ['coverage']
     },
 
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://www.npmjs.com/search?q=keywords:karma-reporter
-    reporters: ['progress'],
+    reporters: ['progress', 'coverage'],
+    coverageReporter: {
+      dir: 'coverage/',
+      reporters: [{ type: 'html', subdir: '.' }]
+    },
 
 
     // web server port

@@ -1,10 +1,12 @@
 //1
-function aleatorio(minimo, maximo) {
-    return Math.floor(Math.random() * (maximo - minimo + 1) + minimo); //Para incluir el minimo y el maximo
+export function aleatorio(minimo, maximo) {
+    if(minimo <= maximo) {
+        return Math.floor(Math.random() * (maximo - minimo + 1) + minimo); //Para incluir el minimo y el maximo
+    }
 }
 
 //2
-function adivina(){
+export function adivina(){
     numIntentos = 0;
     numero = aleatorio(0, 100);
     while(numIntentos < 10){
@@ -29,17 +31,20 @@ function adivina(){
 }
 
 //3
-function array(numElementos, numInicial){
-    array = new Array(numElementos);
-    for(i = 0; i < array.length; i++) {
-        array[i] = numInicial + i;
+export function array(numeroElementos, valorPorDefecto = "", ...resto) {
+    var rslt = [];
+    for (var ind = 0; ind < numeroElementos; ind++) {
+        if (resto.length > ind)
+            rslt[ind] = resto[ind];
+        else
+            rslt[ind] = valorPorDefecto;
     }
-    return array;
+    return rslt;
 }
 
 //4
-function primo(numero) {
-    for (var i = 2; i < numero; i++) {
+export function primo(numero) {
+    for (let i = 2; i < numero; i++) {
       if (numero % i === 0) {
         return false;
       }
@@ -47,18 +52,18 @@ function primo(numero) {
     return numero !== 1;
 }
 
-function primos(numPrimos) {
+export function primos(numPrimos) {
     let c = numPrimos * 10;
-    var numerosPrimos = [];
-    var array = [];
-    for (j=2 ; j < c; j++) {
+    let numerosPrimos = [];
+    let array = [];
+    for (let j=2 ; j < c; j++) {
         if (primo(j)) {
           numerosPrimos.push(j);
         }
       
     }
 
-    for(i = 0; i < numPrimos; i++) {
+    for(let i = 0; i < numPrimos; i++) {
             array[i] = numerosPrimos[i];
     }
 
@@ -66,29 +71,35 @@ function primos(numPrimos) {
 }
 
 //5
-function validarNIF(nif){
+export function validarNIF(nif){
     if(nif.length != 9) {
-        return alert("El nif proporcionado es inválido");
+        // return alert("El nif proporcionado es inválido");
+        return false;
     }
-    for(i = 0; i < 9; i++){
+    for(let i = 0; i < 9; i++){
         if(parseInt(nif[i]) == NaN){
-            return alert("El nif proporcionado es inválido");
+            // return alert("El nif proporcionado es inválido");
+            return false;
         }
     }
     if(nif[8].toUpperCase().charCodeAt(0) < 64 || nif[8].toUpperCase().charCodeAt(0) > 91) {
-        return alert("El nif proporcionado es inválido");
+        // return alert("El nif proporcionado es inválido");
+        return false;
     }
-    return alert("Es válido");
+    // return alert("Es válido");
+    return true;
 }
 
 //6
-function palindromo(cadena){
+export function palindromo(cadena){
     var cadenaReves = cadena.split("").reverse().join("");
 
     if(cadena.replace(/ /g, "").toLowerCase() == cadenaReves.replace(/ /g, "").toLowerCase()) {
-        alert("Es un palíndromo")
+        // alert("Es un palíndromo")
+        return true;
     } else {
-        alert("No es un palíndromo")
+        // alert("No es un palíndromo")
+        return false;
     }
 }
 
@@ -122,7 +133,7 @@ function AdivinaElNumeroConstructor(){
 }
 
 //8
-class AdivinaElNumero{
+export class AdivinaElNumero{
     constructor() {
             this.numero = aleatorio(0, 100);
             this.acierto = false;
@@ -130,22 +141,22 @@ class AdivinaElNumero{
     }
     intentar (intento) {
         if(isNaN(parseInt(intento)) || intento > 100 || intento < 0) {
-            document.querySelector('output').innerText = "El valor introducido no es valido";
+            // document.querySelector('output').innerText = "El valor introducido no es valido";
         } else {
             if(this.numIntentos == 10) {
-                document.querySelector('output').innerText = "Has llegado al límite de intentos";
+                // document.querySelector('output').innerText = "Has llegado al límite de intentos";
             } else if(this.acierto == true) {
-                document.querySelector('output').innerText = "Ya has acertado este numero";
+                // document.querySelector('output').innerText = "Ya has acertado este numero";
             } else {
                 this.numIntentos ++;
                 if(intento == this.numero) {
                     this.acierto = true;
-                    document.querySelector('output').innerText = "Enhorabuena, has acertado!";
+                    // document.querySelector('output').innerText = "Enhorabuena, has acertado!";
                     return this.numero;
                 } else if(intento < this.numero) {
-                    document.querySelector('output').innerText = `El número a adivinar es mayor que el número proporcionado, inténtelo de nuevo. ${this.numIntentos} de 10 intentos`;
+                    // document.querySelector('output').innerText = `El número a adivinar es mayor que el número proporcionado, inténtelo de nuevo. ${this.numIntentos} de 10 intentos`;
                 } else {
-                    document.querySelector('output').innerText = `El número a adivinar es menor que el número proporcionado, inténtelo de nuevo. ${this.numIntentos} de 10 intentos`;
+                    // document.querySelector('output').innerText = `El número a adivinar es menor que el número proporcionado, inténtelo de nuevo. ${this.numIntentos} de 10 intentos`;
                 }
             }
         }
