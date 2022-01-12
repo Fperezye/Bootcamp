@@ -3,11 +3,11 @@ textarea {
     height: 75px;
 }
 
-.largo [value="C"]{ 
+#borrar { 
     width: 70px; 
 }
 
-.largo [value="Retr"]{ 
+#C { 
     width: 70px; 
 }
 
