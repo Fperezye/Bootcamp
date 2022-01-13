@@ -43,16 +43,22 @@
     </div>
     <script src="./js/calculadora.js"></script>
     <script>
-        let areaText = document.querySelector("textarea");
-        let buttonsOperations = document.querySelectorAll(".operation");
-        let buttonsNumbs = document.querySelectorAll(".numb");
-        let calc = new calculadora(areaText, buttonsOperations, buttonsNumbs);
-        document.body.addEventListener('keydown', ev => {
-			if(ev.key === "Delete" || ev.key === "Backspace")
-				document.querySelector('#borrar').click();
-			const button = document.querySelector(`[value="${ev.key.toUpperCase()}"]`);
-			if(button) button.click();
-		})		
+            let areaText = document.querySelector("textarea");
+            let calc = new Calculadora(
+				value => areaText.textContent = value.replace(/\./g, ',')
+			);
+            document.querySelectorAll(".numb").forEach( button => 
+                button.addEventListener("click", ev => calc.Numb(ev.target.value)));
+
+            document.querySelectorAll(".operation").forEach( button => 
+                button.addEventListener("click", ev => calc.Operation(ev.target.value)));
+
+            document.body.addEventListener('keydown', ev => {
+                if(ev.key === "Delete" || ev.key === "Backspace")
+                    document.querySelector('#borrar').click();
+                const button = document.querySelector(`[value="${ev.key.toUpperCase()}"]`);
+                if(button) button.click();
+            })		
     </script>
 </body>
 </html>

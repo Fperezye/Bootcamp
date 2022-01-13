@@ -1,9 +1,21 @@
-function calculadora(area, operations, numbs){
+function Calculadora(fnPantalla){
+    if (fnPantalla && typeof (fnPantalla) !== 'function')
+		throw new Error('Falta la función para pintar en la pantalla')
+    let ref = this;
     let resultado = 0;
     let operation = 0;
     let primeroEnPantalla = true;
     let coma = false;
+    let pantalla = '0';
     let limpiar = false;
+    ref.pantalla = '0';
+    ref.onPantallaChange = fnPantalla;
+
+    function pintaPantalla() {
+		ref.pantalla = pantalla;
+		if (typeof(ref.onPantallaChange) !== 'function') return;
+		ref.onPantallaChange(pantalla);
+	}
     function igualar() {
         limpiar = false;
         if ("+-*/=".indexOf(operation) == -1) return;
@@ -23,71 +35,85 @@ function calculadora(area, operations, numbs){
                 oculto /= operando;
                 break;
         }
-        resultado = area.innerHTML = oculto;
+        resultado = pantalla = String(oculto);
+        pintaPantalla();
         oculto = 0;
         coma = false;
         operation = 0;
         primeroEnPantalla = true;
     }
-    numbs.forEach((button) =>
-        button.addEventListener("click", (ev) => {
-            if (resultado == "0" || primeroEnPantalla) {
-                resultado = button.value;
-                areaText.innerHTML = button.value;
-                limpiar = true;
-            } else {
-                resultado += button.value;
-                areaText.innerHTML += button.value;
-                limpiar = true;
-            }
-            primeroEnPantalla = false;
-        })
-    );
-    operations.forEach((button) =>
-        button.addEventListener("click", (ev) => {
-            if (button.value == "+") {
+
+    ref.Numb = function(value) {
+        if (typeof (value) !== 'string')
+			value = value.toString();
+        if (resultado == "0" || primeroEnPantalla) {
+            resultado = value;
+            pantalla = value;
+            limpiar = true;
+        } else {
+            resultado += value;
+            pantalla += value;
+            limpiar = true;
+        }
+        primeroEnPantalla = false;
+        pintaPantalla();
+    }
+
+    ref.Operation = function (value){
+            if (value == "+") {
                 igualar();
                 oculto = resultado;
                 operation = "+";
                 primeroEnPantalla = true;
                 coma = false;
-            } else if (button.value == "-") {
+            } else if (value == "-") {
                 igualar();
                 oculto = resultado;
                 operation = "-";
                 primeroEnPantalla = true;
                 coma = false;
-            } else if (button.value == "*") {
+            } else if (value == "*") {
                 igualar();
                 oculto = resultado;
                 operation = "*";
                 primeroEnPantalla = true;
                 coma = false;
-            } else if (button.value == "/") {
+            } else if (value == "/") {
                 igualar();
                 oculto = resultado;
                 operation = "/";
                 primeroEnPantalla = true;
                 coma = false;
-            } else if (button.value == "=") {
+            } else if (value == "=") {
                 igualar();
-            } else if (button.value == "C") {
-                areaText.innerHTML = "";
+            } else if (value == "C") {
+                pantalla = "";
                 resultado = 0;
                 operation = 0;
                 oculto = 0;
                 primeroEnPantalla = true;
                 coma = false;
-            } else if (button.value == ",") {
+                pintaPantalla();
+            } else if (value == ",") {
                 if (!coma) {
-                    areaText.innerHTML += ".";
-                    resultado += ".";
-                    coma = true;
-                    primeroEnPantalla = false;
+                    if(primeroEnPantalla){
+                        pantalla = "0.";
+                        resultado = "0.";
+                        primeroEnPantalla = false;
+                        pintaPantalla();
+                    } else {
+                        pantalla += ".";
+                        resultado += ".";
+                        coma = true;
+                        primeroEnPantalla = false;
+                        pintaPantalla();
+                    }  
                 }
-            } else if (button.value == "+-") {
-                resultado = areaText.innerHTML = String(-parseFloat(areaText.innerHTML));
-            } else if (button.value == "Retr") {
+            } else if (value == "+-") {
+                resultado = -resultado;
+                pantalla = pantalla = (-pantalla).toString();;
+                pintaPantalla();
+            } else if (value == "Retr") {
                 if(limpiar){
                     let br = resultado.substr(resultado.length - 1, resultado.length);
                     resultado = resultado.substr(0, resultado.length - 1);
@@ -97,9 +123,9 @@ function calculadora(area, operations, numbs){
                     if (br == ".") {
                         coma = false;
                     }
-                    areaText.innerHTML = resultado;
+                    pantalla = resultado;
+                    pintaPantalla();
                 }
             }
-        })
-    );    
+        }  
 }
