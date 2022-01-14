@@ -9,40 +9,40 @@
 <body>
     <h1>Calculadora</h1>
     <div id="bloque">
-        <textarea></textarea>
+        <textarea id="area"></textarea>
         <br>
         <p>
-            <input class="operation" type="button" value="C" id="C">
-            <input class="operation" type="button" value="Retr" id="borrar">
-            <input class="operation" type="button" value="/">
+            <input class="button operation" type="button" value="C" id="C">
+            <input class="button operation" type="button" value="Retr" id="borrar">
+            <input class="button operation" type="button" value="/">
         </p>
         <p>
-            <input class="numb" type="button" value="7">
-            <input class="numb" type="button" value="8">
-            <input class="numb" type="button" value="9">
-            <input class="operation" type="button" value="*">
+            <input class="button numb" type="button" value="7">
+            <input class="button numb" type="button" value="8">
+            <input class="button numb" type="button" value="9">
+            <input class="button operation" type="button" value="*">
         </p>
         <p>
-            <input class="numb" type="button" value="4">
-            <input class="numb" type="button" value="5">
-            <input class="numb" type="button" value="6">
-            <input class="operation" type="button" value="-">
+            <input class="button numb" type="button" value="4">
+            <input class="button numb" type="button" value="5">
+            <input class="button numb" type="button" value="6">
+            <input class="button operation" type="button" value="-">
         </p>
         <p>
-            <input class="numb" type="button" value="1">
-            <input class="numb" type="button" value="2">
-            <input class="numb" type="button" value="3">
-            <input class="operation" type="button" value="+">
+            <input class="button numb" type="button" value="1">
+            <input class="button numb" type="button" value="2">
+            <input class="button numb" type="button" value="3">
+            <input class="button operation" type="button" value="+">
         </p>
         <p>
-            <input class="operation" type="button" value="+-">
-            <input class="numb" type="button" value="0">
-            <input class="operation" type="button" value=",">
-            <input class="operation" type="button" value="=">
+            <input class="button operation" type="button" value="+-">
+            <input class="button numb" type="button" value="0">
+            <input class="button operation" type="button" value=",">
+            <input class="button operation" type="button" value="=">
         </p>
     </div>
-    <script src="./js/calculadora.js"></script>
-    <script>
+    <script type="module">
+        import {Calculadora} from './js/calculadora.js';
             let areaText = document.querySelector("textarea");
             let calc = new Calculadora(
 				value => areaText.textContent = value.replace(/\./g, ',')

@@ -1,4 +1,4 @@
-function Calculadora(fnPantalla){
+export function Calculadora(fnPantalla){
     if (fnPantalla && typeof (fnPantalla) !== 'function')
 		throw new Error('Falta la función para pintar en la pantalla')
     let ref = this;
@@ -8,6 +8,7 @@ function Calculadora(fnPantalla){
     let coma = false;
     let pantalla = '0';
     let limpiar = false;
+    let oculto= 0;
     ref.pantalla = '0';
     ref.onPantallaChange = fnPantalla;
 
@@ -16,7 +17,8 @@ function Calculadora(fnPantalla){
 		if (typeof(ref.onPantallaChange) !== 'function') return;
 		ref.onPantallaChange(pantalla);
 	}
-    function igualar() {
+
+    ref.igualar = function() {
         limpiar = false;
         if ("+-*/=".indexOf(operation) == -1) return;
         let operando = parseFloat(resultado);
@@ -35,12 +37,13 @@ function Calculadora(fnPantalla){
                 oculto /= operando;
                 break;
         }
-        resultado = pantalla = String(oculto);
+        resultado = pantalla = String(parseFloat(oculto.toPrecision(15)));
         pintaPantalla();
         oculto = 0;
         coma = false;
         operation = 0;
         primeroEnPantalla = true;
+        return resultado;
     }
 
     ref.Numb = function(value) {
@@ -61,31 +64,31 @@ function Calculadora(fnPantalla){
 
     ref.Operation = function (value){
             if (value == "+") {
-                igualar();
+                ref.igualar();
                 oculto = resultado;
                 operation = "+";
                 primeroEnPantalla = true;
                 coma = false;
             } else if (value == "-") {
-                igualar();
+                ref.igualar();
                 oculto = resultado;
                 operation = "-";
                 primeroEnPantalla = true;
                 coma = false;
             } else if (value == "*") {
-                igualar();
+                ref.igualar();
                 oculto = resultado;
                 operation = "*";
                 primeroEnPantalla = true;
                 coma = false;
             } else if (value == "/") {
-                igualar();
+                ref.igualar();
                 oculto = resultado;
                 operation = "/";
                 primeroEnPantalla = true;
                 coma = false;
             } else if (value == "=") {
-                igualar();
+                ref.igualar();
             } else if (value == "C") {
                 pantalla = "";
                 resultado = 0;
