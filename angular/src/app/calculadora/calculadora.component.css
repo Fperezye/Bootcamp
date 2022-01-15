@@ -1,0 +1,22 @@
+#area {
+  width: 199px;
+  height: 75px;
+  border: 2px solid black;
+}
+
+#borrar, #C {
+  width: 72px;
+}
+
+.button {
+  border: 1px solid black;
+  width: 47px;
+  margin: 1.2px;
+}
+
+#bloque {
+  border: 2px solid black;
+  width: 203px;
+  margin: 0 auto;
+  background-color: rgb(92, 112, 226);
+}

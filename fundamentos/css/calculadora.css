@@ -1,20 +1,23 @@
-#area {
-    width: 199px;
+  #area {
+    width: 198px;
     height: 75px;
-}
-
-#borrar, #C { 
-    width: 70px; 
-}
-
-.button { 
+    border: 2px solid black;
+  }
+  
+  #borrar, #C {
+    width: 70px;
+  }
+  
+  .button {
+    border: 1px solid black;
     width: 45px;
     margin: 1.2px;
-}
-
-#bloque {
+  }
+  
+  #bloque {
     border: 2px solid black;
     width: 205px;
     margin: 0 auto;
-    background-color: brown;
-}
+    background-color: rgb(92, 112, 226);
+  }
+  

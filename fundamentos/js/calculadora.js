@@ -2,13 +2,13 @@ export function Calculadora(fnPantalla){
     if (fnPantalla && typeof (fnPantalla) !== 'function')
 		throw new Error('Falta la función para pintar en la pantalla')
     let ref = this;
-    let resultado = 0;
-    let operation = 0;
+    let resultado = '0';
+    let operation = '0';
     let primeroEnPantalla = true;
     let coma = false;
     let pantalla = '0';
     let limpiar = false;
-    let oculto= 0;
+    let oculto= '0';
     ref.pantalla = '0';
     ref.onPantallaChange = fnPantalla;
 
@@ -39,11 +39,10 @@ export function Calculadora(fnPantalla){
         }
         resultado = pantalla = String(parseFloat(oculto.toPrecision(15)));
         pintaPantalla();
-        oculto = 0;
+        oculto = '0';
         coma = false;
-        operation = 0;
+        operation = '0';
         primeroEnPantalla = true;
-        return resultado;
     }
 
     ref.Numb = function(value) {
@@ -60,6 +59,11 @@ export function Calculadora(fnPantalla){
         }
         primeroEnPantalla = false;
         pintaPantalla();
+        return value;
+    }
+
+    ref.ValorActual = function() {
+        return resultado;
     }
 
     ref.Operation = function (value){
@@ -69,34 +73,40 @@ export function Calculadora(fnPantalla){
                 operation = "+";
                 primeroEnPantalla = true;
                 coma = false;
+                return value;
             } else if (value == "-") {
                 ref.igualar();
                 oculto = resultado;
                 operation = "-";
                 primeroEnPantalla = true;
                 coma = false;
+                return value;
             } else if (value == "*") {
                 ref.igualar();
                 oculto = resultado;
                 operation = "*";
                 primeroEnPantalla = true;
                 coma = false;
+                return value;
             } else if (value == "/") {
                 ref.igualar();
                 oculto = resultado;
                 operation = "/";
                 primeroEnPantalla = true;
                 coma = false;
+                return value;
             } else if (value == "=") {
                 ref.igualar();
+                return value;
             } else if (value == "C") {
                 pantalla = "";
-                resultado = 0;
-                operation = 0;
-                oculto = 0;
+                resultado = '0';
+                operation = '0';
+                oculto = '0';
                 primeroEnPantalla = true;
                 coma = false;
                 pintaPantalla();
+                return value;
             } else if (value == ",") {
                 if (!coma) {
                     if(primeroEnPantalla){
@@ -104,18 +114,21 @@ export function Calculadora(fnPantalla){
                         resultado = "0.";
                         primeroEnPantalla = false;
                         pintaPantalla();
+                        return value;
                     } else {
                         pantalla += ".";
                         resultado += ".";
                         coma = true;
                         primeroEnPantalla = false;
                         pintaPantalla();
+                        return value;
                     }  
                 }
             } else if (value == "+-") {
-                resultado = -resultado;
-                pantalla = pantalla = (-pantalla).toString();;
+                resultado = (-resultado).toString();
+                pantalla = pantalla = (-pantalla).toString();
                 pintaPantalla();
+                return value;
             } else if (value == "Retr") {
                 if(limpiar){
                     let br = resultado.substr(resultado.length - 1, resultado.length);
@@ -129,6 +142,7 @@ export function Calculadora(fnPantalla){
                     pantalla = resultado;
                     pintaPantalla();
                 }
+                return value;
             }
         }  
 }

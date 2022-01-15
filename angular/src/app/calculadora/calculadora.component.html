@@ -1,0 +1,34 @@
+  <h1>Calculadora</h1>
+  <div id="bloque">
+      <textarea id="area"></textarea>
+      <br>
+      <p>
+          <input class="button operation" type="button" value="C" id="C" (click)="Operation('C')">
+          <input class="button operation" type="button" value="Retr" id="borrar" (click)="Operation('Retr')">
+          <input class="button operation" type="button" value="/" (click)="Operation('/')">
+      </p>
+      <p>
+          <input class="button numb" type="button" value="7" (click)="Numb('7')">
+          <input class="button numb" type="button" value="8" (click)="Numb('8')">
+          <input class="button numb" type="button" value="9" (click)="Numb('9')">
+          <input class="button operation" type="button" value="*" (click)="Operation('*')">
+      </p>
+      <p>
+          <input class="button numb" type="button" value="4" (click)="Numb('4')">
+          <input class="button numb" type="button" value="5" (click)="Numb('5')">
+          <input class="button numb" type="button" value="6" (click)="Numb('6')">
+          <input class="button operation" type="button" value="-" (click)="Operation('-')">
+      </p>
+      <p>
+          <input class="button numb" type="button" value="1" (click)="Numb('1')">
+          <input class="button numb" type="button" value="2" (click)="Numb('2')">
+          <input class="button numb" type="button" value="3" (click)="Numb('3')">
+          <input class="button operation" type="button" value="+" (click)="Operation('+')">
+      </p>
+      <p>
+          <input class="button operation" type="button" value="+-" (click)="Operation('+-')">
+          <input class="button numb" type="button" value="0" (click)="Numb('0')">
+          <input class="button operation" type="button" value="," (click)="Operation(',')">
+          <input class="button operation" type="button" value="=" (click)="Operation('=')">
+      </p>
+  </div>
