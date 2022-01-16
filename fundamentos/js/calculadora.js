@@ -113,6 +113,7 @@ export function Calculadora(fnPantalla){
                         pantalla = "0.";
                         resultado = "0.";
                         primeroEnPantalla = false;
+                        coma = true;
                         pintaPantalla();
                         return value;
                     } else {

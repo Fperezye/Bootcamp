@@ -1,6 +1,6 @@
   <h1>Calculadora</h1>
   <div id="bloque">
-      <textarea id="area"></textarea>
+      <textarea id="area" [textContent]="pantalla | commaReplace"></textarea>
       <br>
       <p>
           <input class="button operation" type="button" value="C" id="C" (click)="Operation('C')">
