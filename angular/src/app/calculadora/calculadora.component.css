@@ -1,7 +1,15 @@
-#area {
+.resumen {
   width: 199px;
-  height: 75px;
-  border: 2px solid black;
+  height: 40px;
+  background-color: white;
+  text-align:right;
+}
+
+.pantalla {
+  background-color: rgb(189, 177, 143);
+  width: 199px;
+  height: 40px;
+  text-align:right;
 }
 
 #borrar, #C {

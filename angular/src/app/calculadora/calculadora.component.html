@@ -1,7 +1,9 @@
   <h1>Calculadora</h1>
   <div id="bloque">
-      <textarea id="area" [textContent]="pantalla | commaReplace"></textarea>
-      <br>
+    <p>
+      <output class="resumen" [textContent]="resumen | commaReplace"></output>
+      <output class="pantalla" [textContent]="pantalla | commaReplace"></output>
+    </p>
       <p>
           <input class="button operation" type="button" value="C" id="C" (click)="Operation('C')">
           <input class="button operation" type="button" value="Retr" id="borrar" (click)="Operation('Retr')">
