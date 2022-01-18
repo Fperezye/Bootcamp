@@ -145,13 +145,8 @@ export class IngredientesValidator implements Validator {
 }
 
 export function NotBlank(): ValidatorFn {
-  return (control: AbstractControl): { [key: string]: any } | null => {
-      if (!control.value) { return null; }
-      for(let i in control.value) {
-        if(control.value[i] != ' ' )
-          return null;
-      }
-        return { NotBlank: 'No puede dejarse en blanco' }
+  return (control: AbstractControl): ValidationErrors | null => {
+    return control.value?.trim() ? null : { NotBlank: 'No puede estar en blanco' }
   };
 }
 

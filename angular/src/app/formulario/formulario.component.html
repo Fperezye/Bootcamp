@@ -22,6 +22,7 @@
     </output>
     <output class="error"
       [hidden]="!nombre.hasError('NotBlank') ||
+      nombre.hasError('NotBlank') && nombre.hasError('required') ||
       nombre.hasError('NotBlank') && (nombre.hasError('minlength') || nombre.hasError('maxlength'))">
       No puede dejarse en blanco
     </output>
@@ -29,14 +30,9 @@
     <br>
     Apellidos:
     <input type="text" id="apellidos" name="apellidos" [(ngModel)]="elemento.apellidos" #apellidos="ngModel"
-      minlength="2" maxlength="10" esmayusculas NotBlank>
+      minlength="2" maxlength="10" esmayusculas>
     <output class="error" [hidden]="!apellidos.hasError('minlength') && !apellidos.hasError('maxlength')">
       Debe tener entre 2 y 10 letras
-    </output>
-    <output class="error"
-      [hidden]="!apellidos.hasError('NotBlank') ||
-      apellidos.hasError('NotBlank') && (apellidos.hasError('minlength') || apellidos.hasError('maxlength'))">
-      No puede dejarse en blanco
     </output>
     <br>
     Edad:
