@@ -96,7 +96,7 @@ export function Precio(): ValidatorFn {
 
 @Directive({
   selector: '[Precio][formControlName],[Precio][formControl],[Precio][ngModel]',
-  providers: [{ provide: NG_VALIDATORS, useExisting: EsFuturoValidator, multi: true }]
+  providers: [{ provide: NG_VALIDATORS, useExisting: PrecioValidator, multi: true }]
 })
 export class PrecioValidator implements Validator {
   validate(control: AbstractControl): ValidationErrors | null {
@@ -116,7 +116,7 @@ export function EsMayor(): ValidatorFn {
 
 @Directive({
   selector: '[EsMayor][formControlName],[EsMayor][formControl],[EsMayor][ngModel]',
-  providers: [{ provide: NG_VALIDATORS, useExisting: EsFuturoValidator, multi: true }]
+  providers: [{ provide: NG_VALIDATORS, useExisting: EsMayorValidator, multi: true }]
 })
 export class EsMayorValidator implements Validator {
   validate(control: AbstractControl): ValidationErrors | null {
@@ -136,7 +136,7 @@ export function Ingredientes(): ValidatorFn {
 
 @Directive({
   selector: '[Ingredientes][formControlName],[Ingredientes][formControl],[Ingredientes][ngModel]',
-  providers: [{ provide: NG_VALIDATORS, useExisting: EsFuturoValidator, multi: true }]
+  providers: [{ provide: NG_VALIDATORS, useExisting: IngredientesValidator, multi: true }]
 })
 export class IngredientesValidator implements Validator {
   validate(control: AbstractControl): ValidationErrors | null {
@@ -157,7 +157,7 @@ export function NotBlank(): ValidatorFn {
 
 @Directive({
   selector: '[NotBlank][formControlName],[NotBlank][formControl],[NotBlank][ngModel]',
-  providers: [{ provide: NG_VALIDATORS, useExisting: EsFuturoValidator, multi: true }]
+  providers: [{ provide: NG_VALIDATORS, useExisting: NotBlankValidator, multi: true }]
 })
 export class NotBlankValidator implements Validator {
   validate(control: AbstractControl): ValidationErrors | null {
@@ -185,4 +185,4 @@ export class TypeValidator implements Validator {
   }
 }
 
-export const MIS_VALIDADORES = [EsMayusculasValidator, NIFValidator, TypeValidator]
+export const MIS_VALIDADORES = [EsMayusculasValidator, NIFValidator, NotBlankValidator, TypeValidator]
