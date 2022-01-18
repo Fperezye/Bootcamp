@@ -10,7 +10,6 @@ import { LoggerService } from 'src/lib/my-core';
 export class CalculadoraComponent implements OnInit {
   private resultado = '0';
   private operation = '0';
-  private pintarResumen = false;
   private primeroEnPantalla = true;
   private coma = false;
   private miPantalla = '0';
@@ -37,8 +36,11 @@ export class CalculadoraComponent implements OnInit {
   public pintaPantalla(value: string): void {
     this.miPantalla = value;
     this.pantalla = this.miPantalla;
-    if(this.pintarResumen) this.resumen = this.miResumen;
-    this.pintarResumen = false;
+  }
+
+  public pintaResumen(value: string): void {
+    this.miResumen = value;
+    this.resumen = this.miResumen;
   }
 
   public igualar() {
@@ -60,7 +62,8 @@ export class CalculadoraComponent implements OnInit {
           operando2 /= operando;
             break;
     }
-    this.resultado = this.miResumen = String(parseFloat(operando2.toPrecision(15)));
+    this.resultado = String(parseFloat(operando2.toPrecision(15)));
+    this.pintaResumen(this.resultado);
     this.pintaPantalla(this.resultado);
     this.oculto = '0';
     this.coma = false;
@@ -77,7 +80,6 @@ export class CalculadoraComponent implements OnInit {
       this.resultado += value;
       this.limpiar = true;
     }
-    if(this.pintarResumen) this.miResumen = this.oculto;
     this.primeroEnPantalla = false;
     this.pintaPantalla(this.resultado);
   }
@@ -90,31 +92,39 @@ export class CalculadoraComponent implements OnInit {
     if (value == "+") {
       this.igualar();
       this.oculto = this.resultado;
+      this.pintaResumen(this.oculto);
       this.operation = "+";
       this.primeroEnPantalla = true;
       this.coma = false;
-      this.pintarResumen = true;
+      this.miResumen += ' '.concat(this.operation);
+      this.pintaResumen(this.miResumen);
     } else if (value == "-") {
       this.igualar();
       this.oculto = this.resultado;
+      this.pintaResumen(this.oculto);
       this.operation = "-";
       this.primeroEnPantalla = true;
       this.coma = false;
-      this.pintarResumen = true;
+      this.miResumen += ' '.concat(this.operation);
+      this.pintaResumen(this.miResumen);
     } else if (value == "*") {
       this.igualar();
       this.oculto = this.resultado;
+      this.pintaResumen(this.oculto);
       this.operation = "*";
       this.primeroEnPantalla = true;
       this.coma = false;
-      this.pintarResumen = true;
+      this.miResumen += ' '.concat(this.operation);
+      this.pintaResumen(this.miResumen);
     } else if (value == "/") {
       this.igualar();
       this.oculto = this.resultado;
+      this.pintaResumen(this.oculto);
       this.operation = "/";
       this.primeroEnPantalla = true;
       this.coma = false;
-      this.pintarResumen = true;
+      this.miResumen += ' '.concat(this.operation);
+      this.pintaResumen(this.miResumen);
     } else if (value == "=") {
       this.igualar();
     } else if (value == "C") {
@@ -124,7 +134,7 @@ export class CalculadoraComponent implements OnInit {
       this.miResumen = '0';
       this.primeroEnPantalla = true;
       this.coma = false;
-      this.pintarResumen = true;
+      this.pintaResumen(this.miResumen);
       this.pintaPantalla(this.resultado);
     } else if (value == ",") {
         if (!this.coma) {
