@@ -16,12 +16,13 @@
     <br>
     Nombre:
     <input type="text" id="nombre" name="nombre" [(ngModel)]="elemento.nombre" #nombre="ngModel"
-     NotBlank minlength="2" maxlength="10" >
-    <output class="error" [hidden]="!nombre.hasError('minlength') && !nombre.hasError('maxlength')">
+      notblank minlength="2" maxlength="10" esmayusculas>
+    <output class="error" [show]="nombre.hasError('required')">Es obligatorio</output>
+    <output class="error" [show]="nombre.hasError('minlength') || nombre.hasError('maxlength')">
       Debe tener entre 2 y 10 letras
     </output>{{nombre.errors | json}}
     <!-- <app-show-errors-messages [errors]="nombre.errors"></app-show-errors-messages> -->
-    <!-- <output class="error" [myShowErrors]="nombre.errors"></output> -->
+    <output [myShowErrors]="nombre.errors"></output>
     <br>
     Apellidos:
     <input type="text" id="apellidos" name="apellidos" [(ngModel)]="elemento.apellidos" #apellidos="ngModel"
@@ -47,7 +48,15 @@
       {{email.getError('type')}}
     </output>{{email.errors | json}}
   </p>
-  <p>
+    <input type="button" value="add" (click)="addChild(elemento.telefonos, '')">
+    <ul>
+      <li *ngFor="let tel of elemento.telefonos; let indice=index;">
+        <input [(ngModel)]="elemento.telefonos[indice]" [ngModelOptions]="{standalone: true}" notblank>
+      <input type="button" value="del" (click)="delChild(elemento.telefonos, indice)">
+
+      </li>
+    </ul>
+  <p> <!-- (winConfirm)="send()" winConfirmMessage='Los datos ....' -->
     <input type="button" value="enviar" (click)="send()" [disabled]="miForm.invalid" >
     <input type="button" value="volver" (click)="cancel()">
   </p>
@@ -55,6 +64,7 @@
 
 <ul>
   <li *ngFor="let item of listado">
-  <button class="btn btn-link" type="button" (click)="edit(item.id)">{{item.nombre}} {{item.apellidos}}</button>
+   <button class="btn btn-link" type="button" (click)="edit(item.id)">{{item.nombre}} {{item.apellidos}}</button>
+
   </li>
 </ul>

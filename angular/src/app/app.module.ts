@@ -21,6 +21,7 @@ import { CalculadoraComponent } from './calculadora/calculadora.component';
 import { FormularioComponent } from './formulario/formulario.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ContactosModule } from './contactos';
+import { LibrosModule } from './libros';
 
 @NgModule({
   declarations: [
@@ -31,9 +32,9 @@ import { ContactosModule } from './contactos';
     FormularioComponent
   ],
   imports: [
-    BrowserModule, FormsModule, HttpClientModule, ContactosModule,
+    BrowserModule, FormsModule, HttpClientModule,
     MainModule, CommonServicesModule, CommonComponentModule, SecurityModule, MyCoreModule,
-    AppRoutingModule,
+    AppRoutingModule, ContactosModule, LibrosModule,
   ],
   providers: [
     LoggerService,
